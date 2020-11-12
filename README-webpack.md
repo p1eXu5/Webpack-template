@@ -124,7 +124,7 @@ Webpack работает с js, json. Как работать с контент�
 Чтобы подключить дополнительный функционал для контента нужны лоадеры:
 
 
-- CSS
+6. CSS
 
     ```javascript
     module.exports = {
@@ -145,6 +145,9 @@ Webpack работает с js, json. Как работать с контент�
     ```
 
     Стили будут инкапсулироваться в html.
+
+7. CSS file structure
+
     <p>Если мы хотим, чтобы стили хранились в отдельном файле:</p>
 
     `yarn add -D mini-css-extract-plugin`
@@ -183,6 +186,8 @@ Webpack работает с js, json. Как работать с контент�
         ]
     ```
 
+8. Hot Module Replacement (hmr).
+
     hmr - hot module replacement, можем изменять определенные сущности без перезагрузки страницы (для development).
 
      Для cross-platform:
@@ -201,12 +206,12 @@ Webpack работает с js, json. Как работать с контент�
     const isDev = process.env.NODE_ENV === 'development';
     ```
 
-    При продакшене в этом случае css не будет минифицирован, чтобы это исправить см. п. 11.
+    При продакшене в этом случае css не будет минифицирован, чтобы это исправить см. п. 17.
     
 <br/>
 
 
-- Less / Sass
+9. Less / Sass
 
     `yarn add -D less-loader`
     `yarn add -D less`
@@ -234,19 +239,20 @@ Webpack работает с js, json. Как работать с контент�
                 },
     }
     ```
-
-
 <br/>
 
-- Json webpack оборачевает сам в JSON.parse:
+
+10. JSON
+
+    Json webpack оборачевает сам в JSON.parse:
 
     ```javascript 
     import json from './...';
     ```
-
 <br/>
 
-- Картинги:
+
+11. Картинги:
 
     ```yarn add file-loader```
 
@@ -269,10 +275,10 @@ Webpack работает с js, json. Как работать с контент�
     ```javascript 
     import logo from './...'; // // logo is string, path to image file
     ```
-
 <br/>
 
-- Шрифты:
+
+12. Шрифты:
 
     `https://www.fontsquirrel.com/tools/webfont-generator`
     ```css
@@ -294,10 +300,10 @@ Webpack работает с js, json. Как работать с контент�
         ...
     }
     ```
-
 <br/>
 
-- XML:
+
+13. XML:
 
     ```javascript
     module.exports = {
@@ -318,8 +324,10 @@ Webpack работает с js, json. Как работать с контент�
     ```javascript 
     import xml from './...';
     ```
+<br/>
 
-- .csv:
+
+14. .csv:
 
     ```javascript
     module.exports = {
@@ -340,8 +348,8 @@ Webpack работает с js, json. Как работать с контент�
     ```javascript 
     import csv from './...';
     ```
-
 <br/>
+
 
 ## Resolve
 
@@ -375,18 +383,18 @@ module.exports = {
 ```javascript
 import model from '@models/model'
 ```
-
 <br/>
 
-10. 3rd parts
+
+16. 3rd parts
 
     ```javascript
     import * as $ from 'jquery'
     ```
-
 <br/>
 
-11. Оптимизация.
+
+17. Оптимизация.
 
     Если импорт одной библы в 2-х точках входа, то она будет присутствовать в обоих бандлах. Чтобы этого избежать:
 
@@ -440,21 +448,19 @@ import model from '@models/model'
      }
 
     ```
-
-
 <br/>
 
-11. JS Minification
 
-    
+18. JS Minification
+
 
     ```javascript
     
     ```
-
 <br/>
 
-12. Dev-сервер
+
+19. Dev-сервер
 
     Например, чтобы вручную не обновлять страницу после изменений.
 
@@ -465,7 +471,8 @@ import model from '@models/model'
         ...
         devServer: {
             port: 4200,
-            hot: isDev
+            hot: isDev,
+            historyApiFallback: true // для того, чтобы роуты работали после обновления
         },
         ...
     }
@@ -483,10 +490,10 @@ import model from '@models/model'
     ```
     Все бандлы складывает в оперативную память, а не в dist, ну шоб шустрее было, типо.
 
-
 <br/>
 
-13. Копирование файлов
+
+20. Копирование файлов
 
     `yarn add -D copy-webpack-plugin`
 
@@ -513,7 +520,7 @@ import model from '@models/model'
 
 <br/>
 
-15. Babel.
+21. Babel.
 
     `yarn add -D babel-loader` <br/>
     `yarn add -D @babel/core` <br/>
@@ -591,10 +598,20 @@ import model from '@models/model'
         `yarn add react` <br/>
         `yarn add react-dom` <br/>
 
+    * Fable.React
+
+        ```json
+        "devDependencies": {
+            "@babel/core": "^7.12.3",
+            "fable-compiler": "^2.13.0",
+            "fable-loader": "^2.1.9",
+            "react-router-dom": "^5.2.0",
+            ...
+        ```
 
 <br/>
 
-16. Devtool.
+21. Devtool.
 
     https://webpack.js.org/configuration/devtool/
 
@@ -606,7 +623,7 @@ import model from '@models/model'
 
 <br/>
 
-17. Analysis
+22. Analysis
 
     `yarn add -D webpack-bundle-analyzer` <br/>
 
